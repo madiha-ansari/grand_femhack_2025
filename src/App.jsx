@@ -11,6 +11,8 @@ import SignupPage from "./pages/signUp";
 import { Toaster } from "react-hot-toast";
 import TaskBoard from "./pages/Home";
 
+
+
 function App() {
   return (
     <Provider store={store}>

@@ -16,12 +16,14 @@ const TaskBoard = () => {
   const [toastId, setToastId] = useState(null);  
   const navigate = useNavigate();
 
+  // api call for env file
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const fetchTasks = async () => {
     setLoading(true);
+    // try block
     try {
       const response = await axios.get(`${apiUrl}/tasks`);
       if (Array.isArray(response.data)) {
@@ -29,7 +31,10 @@ const TaskBoard = () => {
       } else {
         toast.error('Invalid task data received from server!');
       }
-    } catch (error) {
+
+    }
+    // catch block
+    catch (error) {
       console.error('Error fetching tasks:', error);
       toast.error('Failed to fetch tasks from server!');
     } finally {

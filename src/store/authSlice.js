@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
+// TWT authentication has been started ✨
 const token = Cookies.get("jwt");
 const initialState = {
   isLoggedIn: !!token,
@@ -29,7 +30,6 @@ const authSlice = createSlice({
       state.isAdmin = action.payload;
     },
     setUser: (state, action) => {
-
       state.user = action.payload;
     },
   },

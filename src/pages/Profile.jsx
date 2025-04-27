@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PulseLoader } from "react-spinners";
 
+// api calling for env file
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
-
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -31,7 +31,6 @@ const Profile = () => {
           setLoading(false);
           return;
         }
-
         const response = await axios.get(
           `${apiUrl}/auth/current-user`,
           {
@@ -90,10 +89,8 @@ const Profile = () => {
           withCredentials: true,
         }
       );
-
       setUserData(response.data.user);
       setIsEditing(false);
-
       setTimeout(() => {
         window.location.reload();
       }, 500);
@@ -102,7 +99,7 @@ const Profile = () => {
       setError("Failed to update profile. Please try again later.");
     }
   };
-
+// conditions for loading and error
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#222d52]">
@@ -110,7 +107,7 @@ const Profile = () => {
       </div>
     );
   }
-
+// error
   if (error) {
     return <div className="text-center text-red-500">{error}</div>;
   }

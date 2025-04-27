@@ -10,3 +10,14 @@ const TaskCard = ({ task }) => {
 };
 
 export default TaskCard;
+
+// extra code for testing purposes
+// functinally dark and light mood
+//   <div>
+//   <h2>User: {user}</h2>
+//   <h2>Theme: {theme}</h2>
+//   <button onClick={() => setUser('New User')}>Change User</button>
+//   <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+//     Toggle Theme
+//   </button>
+// </div>

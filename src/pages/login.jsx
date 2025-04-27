@@ -7,6 +7,7 @@ import { ClipLoader } from "react-spinners";
 import Joi from "joi";
 import "react-toastify/dist/ReactToastify.css"; 
 
+// calling foor api
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 const Login = () => {
@@ -56,14 +57,11 @@ const Login = () => {
       return;
     }
 
-  
     try {
       const { data } = await axios.post(`${apiUrl}/auth/login`, formData, {
         withCredentials: true,
       });
-
       Cookies.set("jwt", data.token, { expires: 7 });
-
       toast.success("You are now logged in!", {
         position: "top-center",
         autoClose: 3000,
@@ -76,13 +74,11 @@ const Login = () => {
           border: "2px solid #d2b68a"
         },
       });
-
+// set time out function
       setTimeout(() => {
         navigate("/");
         window.location.reload();
-
       }, 3000);
-
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong", {
         position: "top-center",
@@ -98,7 +94,6 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-[#ccc7c7]">
       <div className="bg-[#6d7ee1] p-6 rounded-lg shadow-md w-96 border border-[#d2b68a]">
         <h2 className="text-2xl font-bold text-center text-[#fdffff] mb-4">Login</h2>
-
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-[#eee5d9]">Email</label>
@@ -145,7 +140,6 @@ const Login = () => {
           </Link>
         </p>
       </div>
-
       <ToastContainer /> 
     </div>
   );

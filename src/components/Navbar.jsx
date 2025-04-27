@@ -96,19 +96,15 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <span className="text-2xl font-bold text-[#fdffff] relative">
-            Task Management
+              Task Management
               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#d2b68a] to-transparent"></span>
             </span>
           </Link>
 
-         
-
           {/* Right Side Actions */}
           <div className="flex items-center space-x-4">
-            
-    
 
-            {/* Profile Dropdown */}
+            {/* Profile  */}
             <div className="relative" ref={dropdownRef}>
               {isLoggedIn ? (
                 <button
@@ -190,7 +186,6 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-
           </div>
         </div>
 
@@ -198,9 +193,6 @@ const Navbar = () => {
         {showMobileMenu && (
           <div className="md:hidden bg-[#8fa5ed] border-t border-[#d2b68a]/20">
             <div className="px-2 pt-2 pb-3 space-y-1">
-             
-             
-              
               {!isLoggedIn && (
                 <Link
                   to="/login"

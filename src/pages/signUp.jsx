@@ -6,13 +6,12 @@ import { ClipLoader } from "react-spinners";
 import Joi from "joi";
 import "react-toastify/dist/ReactToastify.css";
 
+// env file callingfor api
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
-
 
 const SignupPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -24,7 +23,7 @@ const SignupPage = () => {
   });
 
   const [previewImage, setPreviewImage] = useState(null);
-
+  // schema
   const signupSchema = Joi.object({
     username: Joi.string()
       .pattern(/^[A-Za-z ]+$/)
@@ -87,9 +86,7 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     const { error } = signupSchema.validate(formData, { abortEarly: false });
-
     if (error) {
       toast.error(error.details.map((err) => err.message).join("\n"), {
         position: "top-center",
@@ -99,12 +96,11 @@ const SignupPage = () => {
       setLoading(false);
       return;
     }
-
     const data = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
       data.append(key, value);
     });
-
+// try catch blocked
     try {
       await axios.post(`${apiUrl}/auth/signup`, data, {
         headers: {
@@ -112,7 +108,6 @@ const SignupPage = () => {
         },
         withCredentials: true,
       });
-
       toast.success("Your account has been created! Please login.", {
         position: "top-center",
         autoClose: 3000,
@@ -125,7 +120,6 @@ const SignupPage = () => {
           border: "2px solid #d2b68a"
         },
       });
-
       setTimeout(() => {
         navigate("/login");
       }, 3000);
@@ -146,7 +140,6 @@ const SignupPage = () => {
         <h2 className="mt-6 text-center text-3xl font-extrabold text-[#fdffff]">
           Create Account
         </h2>
-
         <form onSubmit={handleSubmit}>
           {["username", "email", "password", "address", "country", "city"].map((field) => (
             <div className="mb-4" key={field}>
@@ -180,7 +173,6 @@ const SignupPage = () => {
               />
             )}
           </div>
-
           <button
             type="submit"
             className="w-full px-4 py-2 bg-[#d2b68a] text-[#222d52] rounded-md hover:bg-[#eee5d9] transition-colors duration-300 font-semibold flex items-center justify-center"
@@ -192,7 +184,6 @@ const SignupPage = () => {
               "Sign Up"
             )}
           </button>
-
           <div className="mt-4 text-center">
             <p className="text-[#eee5d9]">
               Already have an account?{" "}
@@ -203,7 +194,6 @@ const SignupPage = () => {
           </div>
         </form>
       </div>
-
       <ToastContainer />
     </div>
   );

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+// npm i axios
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { isAdmin } = useSelector((state) => state.auth);
@@ -19,19 +20,20 @@ const AdminDashboard = () => {
     }
 
     const fetchData = async () => {
+      // try block
       try {
+        // env file for api base url
         const apiUrl = import.meta.env.VITE_API_BASE_URL;
-
-
         const [usersResponse, productsResponse] = await Promise.all([
           axios.get(`${apiUrl}/admin/users`),
           axios.get(`${apiUrl}/admin/products`),
         ]);
-
         setUsers(usersResponse.data.users);
         setProducts(productsResponse.data.products);
         setLoading(false);
-      } catch (error) {
+      }
+      // catch block
+      catch (error) {
         console.error("Error fetching data:", error);
         toast.error("Error loading dashboard data");
         setLoading(false);
